@@ -17,4 +17,21 @@ public class ProveedorRepository : IProveedorRepository
     {
         return await _context.Proveedores.ToListAsync();
     }
+
+    public async Task<Proveedor?> GetById(Guid id)
+    {
+        return await _context.Proveedores.FirstOrDefaultAsync(x => x.Id == id);
+    }
+
+    public async Task Add(Proveedor proveedor)
+    {
+        _context.Proveedores.Add(proveedor);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task Update(Proveedor proveedor)
+    {
+        _context.Proveedores.Update(proveedor);
+        await _context.SaveChangesAsync();
+    }
 }
