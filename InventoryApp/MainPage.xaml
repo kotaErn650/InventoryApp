@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InventoryApp.MainPage">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <!-- my CONTENIDO -->
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="0,0" Spacing="25">
+
+                <Grid HeightRequest="150">
+
+                    <Grid.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#00FFFF" Offset="0.0"/>
+                            <GradientStop Color="#40FF00" Offset="1.0"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+
+                    <Image
+                    Source="kota_bot.png"
+                    Aspect="AspectFit"
+                    HeightRequest="150"/>
+
+                </Grid>
+
+                <Button
+                x:Name="CounterBtn"
+                Text="Click me"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill"/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+
+        <!-- mY fOOTer -->
+        <Grid Grid.Row="1"
+          BackgroundColor="#191919"
+          Padding="10"
+          ColumnDefinitions="*,*,*">
+
+            <Button
+            Grid.Column="0"
+            Text="Inicio"
+            BackgroundColor="Transparent"
+            TextColor="#00FFFF"/>
+
+            <Button
+            Grid.Column="1"
+            Text="Productos"
+            BackgroundColor="Transparent"
+            TextColor="#FF10F0"/>
+
+            <Button
+            Grid.Column="2"
+            Text="Perfil"
+            BackgroundColor="Transparent"
+            TextColor="#39FF14"/>
+
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

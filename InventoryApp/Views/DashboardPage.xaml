@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InventoryApp.Views.DashboardPage"
+             Title="Dashboard_Page">
+    
+    
+    
+    
+    <VerticalStackLayout Padding="30" Spacing="20">
+
+
+
+        <Grid HeightRequest="150">
+
+            <Grid.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#00FFFF" Offset="0.0"/>
+                    <GradientStop Color="#40FF00" Offset="1.0"/>
+                </LinearGradientBrush>
+            </Grid.Background>
+
+            <Image
+        Source="ecci.png"
+        Aspect="AspectFit"
+        HeightRequest="150"/>
+
+        </Grid>
+        
+
+        <Label
+            Text="Inventario"
+            FontSize="30"
+            HorizontalOptions="Center"/>
+
+        <Button
+            Text="Gestionar Productos"
+            Clicked="GoProducts"/>
+        
+        <!-- mY fOOTer -->
+        <Grid Grid.Row="1"
+          BackgroundColor="#191919"
+          Padding="10"
+          ColumnDefinitions="*,*,*">
+
+            <Button
+                Grid.Column="0"
+                Text="Inicio"
+                BackgroundColor="Transparent"
+                TextColor="#00FFFF"
+                Clicked="GoInicio"/>
+
+            <Button
+                Grid.Column="1"
+                Text="Productos"
+                BackgroundColor="Transparent"
+                TextColor="#FF10F0"/>
+
+            <Button
+                Grid.Column="2"
+                Text="Perfil"
+                BackgroundColor="Transparent"
+                TextColor="#39FF14"/>
+
+        </Grid>
+
+    </VerticalStackLayout>
+    
+    
+</ContentPage>
