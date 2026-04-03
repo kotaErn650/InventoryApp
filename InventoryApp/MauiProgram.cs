@@ -1,15 +1,10 @@
-﻿using Microsoft.Extensions.Logging;
-
-
-
 using InventoryApp.Data;
+using InventoryApp.Models;
 using InventoryApp.Repositories;
 using InventoryApp.Services;
 using InventoryApp.ViewModels;
 using InventoryApp.Views;
 using Microsoft.EntityFrameworkCore;
-using InventoryApp;
-
 
 public static class MauiProgram
 {
@@ -17,23 +12,123 @@ public static class MauiProgram
     {
         var builder = MauiApp.CreateBuilder();
 
-        builder
-            .UseMauiApp<App>();
+        builder.UseMauiApp<InventoryApp.App>();
 
-        builder.Services.AddDbContext<AppDbContext>(opt =>
-            opt.UseInMemoryDatabase("InventoryDb"));
+        builder.Services.AddDbContext<AppDbContext>(
+            opt => opt.UseInMemoryDatabase("InventoryDb"),
+            ServiceLifetime.Singleton);
 
-        builder.Services.AddScoped<IProductRepository, ProductRepository>();
+        builder.Services.AddSingleton<DbContextFactory>();
 
-        builder.Services.AddScoped<ProductService>();
+        builder.Services.AddSingleton<IProductRepository, ProductRepository>();
+        builder.Services.AddSingleton<ProductService>();
 
+        builder.Services.AddSingleton<IProveedorRepository, ProveedorRepository>();
+        builder.Services.AddSingleton<ProveedorService>();
+
+        builder.Services.AddTransient<DashboardViewModel>();
         builder.Services.AddTransient<ProductsViewModel>();
         builder.Services.AddTransient<ProductFormViewModel>();
+        builder.Services.AddTransient<ProveedoresViewModel>();
 
+        builder.Services.AddTransient<DashboardPage>();
         builder.Services.AddTransient<ProductsPage>();
         builder.Services.AddTransient<ProductFormPage>();
-        builder.Services.AddTransient<DashboardPage>();
+        builder.Services.AddTransient<ProveedoresPage>();
 
-        return builder.Build();
+        var app = builder.Build();
+
+        SeedDatabase(app.Services);
+
+        return app;
+    }
+
+    private static void SeedDatabase(IServiceProvider services)
+    {
+        var db = services.GetRequiredService<AppDbContext>();
+        db.Database.EnsureCreated();
+
+        if (!db.Products.Any())
+        {
+            db.Products.AddRange(
+                new Product
+                {
+                    Id = Guid.NewGuid(),
+                    Nombre = "Laptop",
+                    Descripcion = "Laptop Dell XPS 15",
+                    Precio = 3500m,
+                    Stock = 10,
+                    Activo = true,
+                    FechaCreacion = DateTime.UtcNow
+                },
+                new Product
+                {
+                    Id = Guid.NewGuid(),
+                    Nombre = "Mouse",
+                    Descripcion = "Mouse inalámbrico Logitech",
+                    Precio = 80m,
+                    Stock = 50,
+                    Activo = true,
+                    FechaCreacion = DateTime.UtcNow
+                },
+                new Product
+                {
+                    Id = Guid.NewGuid(),
+                    Nombre = "Teclado",
+                    Descripcion = "Teclado mecánico RGB",
+                    Precio = 150m,
+                    Stock = 30,
+                    Activo = true,
+                    FechaCreacion = DateTime.UtcNow
+                },
+                new Product
+                {
+                    Id = Guid.NewGuid(),
+                    Nombre = "Monitor",
+                    Descripcion = "Monitor 27\" 4K UHD",
+                    Precio = 800m,
+                    Stock = 5,
+                    Activo = true,
+                    FechaCreacion = DateTime.UtcNow
+                }
+            );
+            db.SaveChanges();
+        }
+
+        if (!db.Proveedores.Any())
+        {
+            db.Proveedores.AddRange(
+                new Proveedor
+                {
+                    Id = Guid.NewGuid(),
+                    Foto = "hard.png",
+                    Nombre = "TechDistribuciones S.A.",
+                    TipoProducto = "Electrónica"
+                },
+                new Proveedor
+                {
+                    Id = Guid.NewGuid(),
+                    Foto = "offi.png",
+                    Nombre = "OfficeSupplies Ltda.",
+                    TipoProducto = "Papelería y Oficina"
+                },
+                new Proveedor
+                {
+                    Id = Guid.NewGuid(),
+                    Foto = "hard.png",
+                    Nombre = "Hardware Pro",
+                    TipoProducto = "Componentes de Computadora"
+                },
+                new Proveedor
+                {
+                    Id = Guid.NewGuid(),
+                    Foto = "per.png",
+                    Nombre = "MegaImport Corp.",
+                    TipoProducto = "Accesorios"
+                }
+            );
+            db.SaveChanges();
+        }
     }
 }
+

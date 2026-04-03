@@ -2,9 +2,9 @@ using InventoryApp.ViewModels;
 
 namespace InventoryApp.Views;
 
-public partial class ProductsPage : ContentPage
+public partial class ProveedoresPage : ContentPage
 {
-    public ProductsPage(ProductsViewModel vm)
+    public ProveedoresPage(ProveedoresViewModel vm)
     {
         InitializeComponent();
         BindingContext = vm;
@@ -14,7 +14,7 @@ public partial class ProductsPage : ContentPage
     {
         base.OnAppearing();
 
-        if (BindingContext is ProductsViewModel vm)
+        if (BindingContext is ProveedoresViewModel vm)
             vm.LoadCommand.Execute(null);
     }
 }

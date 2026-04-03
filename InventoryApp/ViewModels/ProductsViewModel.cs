@@ -1,7 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 using System.Collections.ObjectModel;
 using InventoryApp.Models;
 using InventoryApp.Services;
@@ -16,9 +12,8 @@ public class ProductsViewModel : BaseViewModel
     public ObservableCollection<Product> Products { get; set; } = new();
 
     public RelayCommand LoadCommand { get; }
-
     public RelayCommand DisableCommand { get; }
-
+    public RelayCommand EditCommand { get; }
     public RelayCommand NewCommand { get; }
 
     public ProductsViewModel(ProductService service)
@@ -26,12 +21,9 @@ public class ProductsViewModel : BaseViewModel
         _service = service;
 
         LoadCommand = new RelayCommand(async _ => await Load());
-        DisableCommand = new RelayCommand(async p => await Disable((Product)p));
+        DisableCommand = new RelayCommand(async p => await Disable((Product)p!));
+        EditCommand = new RelayCommand(async p => await Edit((Product)p!));
         NewCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("productform"));
-    }
-
-    public ProductsViewModel()
-    {
     }
 
     public async Task Load()
@@ -48,5 +40,10 @@ public class ProductsViewModel : BaseViewModel
     {
         await _service.Disable(product);
         await Load();
+    }
+
+    private async Task Edit(Product product)
+    {
+        await Shell.Current.GoToAsync($"productform?productId={product.Id}");
     }
 }
