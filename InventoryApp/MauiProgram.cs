@@ -68,7 +68,7 @@ public static class MauiProgram
                     Id = Guid.NewGuid(),
                     Nombre = "Mouse",
                     Descripcion = "Mouse inalámbrico Logitech",
-                    Precio = 80m,
+                    Precio = 80000m,
                     Stock = 50,
                     Activo = true,
                     FechaCreacion = DateTime.UtcNow
@@ -78,7 +78,7 @@ public static class MauiProgram
                     Id = Guid.NewGuid(),
                     Nombre = "Teclado",
                     Descripcion = "Teclado mecánico RGB",
-                    Precio = 150m,
+                    Precio = 150000,
                     Stock = 30,
                     Activo = true,
                     FechaCreacion = DateTime.UtcNow
@@ -88,7 +88,7 @@ public static class MauiProgram
                     Id = Guid.NewGuid(),
                     Nombre = "Monitor",
                     Descripcion = "Monitor 27\" 4K UHD",
-                    Precio = 800m,
+                    Precio = 800M,
                     Stock = 5,
                     Activo = true,
                     FechaCreacion = DateTime.UtcNow
