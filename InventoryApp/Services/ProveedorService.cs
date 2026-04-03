@@ -16,4 +16,25 @@ public class ProveedorService
     {
         return await _repository.GetAll();
     }
+
+    public async Task<Proveedor?> GetById(Guid id)
+    {
+        return await _repository.GetById(id);
+    }
+
+    public async Task Create(Proveedor proveedor)
+    {
+        await _repository.Add(proveedor);
+    }
+
+    public async Task Update(Proveedor proveedor)
+    {
+        await _repository.Update(proveedor);
+    }
+
+    public async Task ToggleActivo(Proveedor proveedor)
+    {
+        proveedor.Activo = !proveedor.Activo;
+        await _repository.Update(proveedor);
+    }
 }
