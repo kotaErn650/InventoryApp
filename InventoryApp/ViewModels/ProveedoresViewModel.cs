@@ -15,6 +15,9 @@ public class ProveedoresViewModel : BaseViewModel
     public RelayCommand ToggleActivoCommand { get; }
     public RelayCommand EditCommand { get; }
     public RelayCommand NewCommand { get; }
+    public RelayCommand GoInicioCommand { get; }
+    public RelayCommand GoProductsCommand { get; }
+    public RelayCommand GoProveedoresCommand { get; }
 
     public ProveedoresViewModel(ProveedorService service)
     {
@@ -24,6 +27,9 @@ public class ProveedoresViewModel : BaseViewModel
         ToggleActivoCommand = new RelayCommand(async p => await ToggleActivo((Proveedor)p!));
         EditCommand = new RelayCommand(async p => await Edit((Proveedor)p!));
         NewCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("proveedorform"));
+        GoInicioCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("//dashboard"));
+        GoProductsCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("products"));
+        GoProveedoresCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("proveedores"));
     }
 
     public async Task Load()

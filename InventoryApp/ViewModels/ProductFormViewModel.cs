@@ -52,11 +52,17 @@ public class ProductFormViewModel : BaseViewModel, IQueryAttributable
     }
 
     public RelayCommand SaveCommand { get; }
+    public RelayCommand GoInicioCommand { get; }
+    public RelayCommand GoProductsCommand { get; }
+    public RelayCommand GoProveedoresCommand { get; }
 
     public ProductFormViewModel(ProductService service)
     {
         _service = service;
         SaveCommand = new RelayCommand(async _ => await Save());
+        GoInicioCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("//dashboard"));
+        GoProductsCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("products"));
+        GoProveedoresCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("proveedores"));
     }
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
