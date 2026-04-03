@@ -63,12 +63,47 @@
                                     CommandParameter="{Binding .}"/>
 
                         </Grid>
+                        
+                        
 
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
+            
+            
 
         </CollectionView>
+
+    </Grid>
+
+    <!-- Footer -->
+    <Grid Grid.Row="1"
+              BackgroundColor="#191919"
+              Padding="10"
+              ColumnDefinitions="*,*,*,*">
+
+        <Button Grid.Column="0"
+                    Text="Inicio"
+                    BackgroundColor="Transparent"
+                    TextColor="#00FFFF"
+                    Command="{Binding GoInicioCommand}"/>
+
+        <Button Grid.Column="1"
+                    Text="Productos"
+                    BackgroundColor="Transparent"
+                    TextColor="#FF10F0"
+                    Command="{Binding GoProductsCommand}"/>
+
+        <Button Grid.Column="2"
+                    Text="Proveedores"
+                    BackgroundColor="Transparent"
+                    TextColor="#FFA500"
+                    Command="{Binding GoProveedoresCommand}"/>
+
+        <Button Grid.Column="3"
+                    Text="Perfil"
+                    BackgroundColor="Transparent"
+                    TextColor="#39FF14"/>
 
     </Grid>
 
