@@ -103,7 +103,7 @@ public static class MauiProgram
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "dotnet_bot.png",
+                    Foto = "hard.png",
                     Nombre = "TechDistribuciones S.A.",
                     TipoProducto = "Electrónica",
                     Activo = true
@@ -111,26 +111,32 @@ public static class MauiProgram
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "ecci.png",
+                    Foto = "offi.png",
                     Nombre = "OfficeSupplies Ltda.",
                     TipoProducto = "Papelería y Oficina",
-                    Activo = true
+                    Activo = true,
+                    Telefono = "3212222",
+                    Email= "aajdha@Ecci.edu.co"
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "dotnet_bot.png",
+                    Foto = "hard.png",
                     Nombre = "Hardware Pro",
                     TipoProducto = "Componentes de Computadora",
-                    Activo = true
+                    Activo = true,
+                    Telefono = "3212222",
+                    Email = "aajdha@Ecci.edu.co"
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "ecci.png",
+                    Foto = "per.png",
                     Nombre = "MegaImport Corp.",
-                    TipoProducto = "Accesorios",
-                    Activo = true
+                    TipoProducto = "Perifericos",
+                    Activo = true,
+                    Telefono = "3212222",
+                    Email = "aajdha@Ecci.edu.co"
                 }
             );
             db.SaveChanges();
