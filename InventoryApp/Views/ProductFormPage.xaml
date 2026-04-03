@@ -26,6 +26,17 @@
                    Keyboard="Numeric"
                    Text="{Binding Stock}"/>
 
+            <Label Text="Estado" FontAttributes="Bold"/>
+            <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                <Label Grid.Column="0"
+                       Text="{Binding Activo, Converter={StaticResource BoolToEstadoConverter}}"
+                       VerticalOptions="Center"
+                       FontSize="14"/>
+                <Switch Grid.Column="1"
+                        IsToggled="{Binding Activo}"
+                        VerticalOptions="Center"/>
+            </Grid>
+
             <Button Text="💾  Guardar"
                     Command="{Binding SaveCommand}"
                     HeightRequest="50"

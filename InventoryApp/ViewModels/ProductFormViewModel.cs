@@ -37,6 +37,13 @@ public class ProductFormViewModel : BaseViewModel, IQueryAttributable
         set => SetProperty(ref _stock, value);
     }
 
+    private bool _activo = true;
+    public bool Activo
+    {
+        get => _activo;
+        set => SetProperty(ref _activo, value);
+    }
+
     private string _title = "Nuevo Producto";
     public string Title
     {
@@ -76,6 +83,7 @@ public class ProductFormViewModel : BaseViewModel, IQueryAttributable
         Descripcion = product.Descripcion;
         Precio = product.Precio;
         Stock = product.Stock;
+        Activo = product.Activo;
         Title = "Editar Producto";
     }
 
@@ -87,6 +95,7 @@ public class ProductFormViewModel : BaseViewModel, IQueryAttributable
             _editingProduct.Descripcion = Descripcion;
             _editingProduct.Precio = Precio;
             _editingProduct.Stock = Stock;
+            _editingProduct.Activo = Activo;
             await _service.Update(_editingProduct);
         }
         else
@@ -98,7 +107,7 @@ public class ProductFormViewModel : BaseViewModel, IQueryAttributable
                 Descripcion = Descripcion,
                 Precio = Precio,
                 Stock = Stock,
-                Activo = true,
+                Activo = Activo,
                 FechaCreacion = DateTime.UtcNow
             };
             await _service.Create(product);
