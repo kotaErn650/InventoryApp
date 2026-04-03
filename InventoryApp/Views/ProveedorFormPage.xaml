@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InventoryApp.Views.ProductFormPage"
+             x:Class="InventoryApp.Views.ProveedorFormPage"
              Title="{Binding Title}">
     <Grid RowDefinitions="*,Auto">
 
@@ -10,23 +10,22 @@
             <VerticalStackLayout Padding="20" Spacing="12">
 
                 <Label Text="Nombre" FontAttributes="Bold"/>
-                <Entry Placeholder="Nombre del producto"
+                <Entry Placeholder="Nombre del proveedor"
                        Text="{Binding Nombre}"/>
 
-                <Label Text="Descripción" FontAttributes="Bold"/>
-                <Editor Placeholder="Descripción del producto"
-                        HeightRequest="100"
-                        Text="{Binding Descripcion}"/>
+                <Label Text="Tipo de Producto" FontAttributes="Bold"/>
+                <Entry Placeholder="Ej. Electrónica, Papelería..."
+                       Text="{Binding TipoProducto}"/>
 
-                <Label Text="Precio" FontAttributes="Bold"/>
-                <Entry Placeholder="0.00"
-                       Keyboard="Numeric"
-                       Text="{Binding Precio}"/>
+                <Label Text="Teléfono" FontAttributes="Bold"/>
+                <Entry Placeholder="Número de contacto"
+                       Keyboard="Telephone"
+                       Text="{Binding Telefono}"/>
 
-                <Label Text="Stock" FontAttributes="Bold"/>
-                <Entry Placeholder="0"
-                       Keyboard="Numeric"
-                       Text="{Binding Stock}"/>
+                <Label Text="Correo Electrónico" FontAttributes="Bold"/>
+                <Entry Placeholder="correo@ejemplo.com"
+                       Keyboard="Email"
+                       Text="{Binding Email}"/>
 
                 <Label Text="Estado" FontAttributes="Bold"/>
                 <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">

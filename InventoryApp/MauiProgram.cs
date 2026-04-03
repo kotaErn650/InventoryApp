@@ -30,11 +30,13 @@ public static class MauiProgram
         builder.Services.AddTransient<ProductsViewModel>();
         builder.Services.AddTransient<ProductFormViewModel>();
         builder.Services.AddTransient<ProveedoresViewModel>();
+        builder.Services.AddTransient<ProveedorFormViewModel>();
 
         builder.Services.AddTransient<DashboardPage>();
         builder.Services.AddTransient<ProductsPage>();
         builder.Services.AddTransient<ProductFormPage>();
         builder.Services.AddTransient<ProveedoresPage>();
+        builder.Services.AddTransient<ProveedorFormPage>();
 
         var app = builder.Build();
 
@@ -66,7 +68,7 @@ public static class MauiProgram
                     Id = Guid.NewGuid(),
                     Nombre = "Mouse",
                     Descripcion = "Mouse inalámbrico Logitech",
-                    Precio = 80m,
+                    Precio = 80000m,
                     Stock = 50,
                     Activo = true,
                     FechaCreacion = DateTime.UtcNow
@@ -76,7 +78,7 @@ public static class MauiProgram
                     Id = Guid.NewGuid(),
                     Nombre = "Teclado",
                     Descripcion = "Teclado mecánico RGB",
-                    Precio = 150m,
+                    Precio = 150000,
                     Stock = 30,
                     Activo = true,
                     FechaCreacion = DateTime.UtcNow
@@ -86,7 +88,7 @@ public static class MauiProgram
                     Id = Guid.NewGuid(),
                     Nombre = "Monitor",
                     Descripcion = "Monitor 27\" 4K UHD",
-                    Precio = 800m,
+                    Precio = 800M,
                     Stock = 5,
                     Activo = true,
                     FechaCreacion = DateTime.UtcNow
@@ -103,28 +105,38 @@ public static class MauiProgram
                     Id = Guid.NewGuid(),
                     Foto = "hard.png",
                     Nombre = "TechDistribuciones S.A.",
-                    TipoProducto = "Electrónica"
+                    TipoProducto = "Electrónica",
+                    Activo = true
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
                     Foto = "offi.png",
                     Nombre = "OfficeSupplies Ltda.",
-                    TipoProducto = "Papelería y Oficina"
+                    TipoProducto = "Papelería y Oficina",
+                    Activo = true,
+                    Telefono = "3212222",
+                    Email= "aajdha@Ecci.edu.co"
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
                     Foto = "hard.png",
                     Nombre = "Hardware Pro",
-                    TipoProducto = "Componentes de Computadora"
+                    TipoProducto = "Componentes de Computadora",
+                    Activo = true,
+                    Telefono = "3212222",
+                    Email = "aajdha@Ecci.edu.co"
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
                     Foto = "per.png",
                     Nombre = "MegaImport Corp.",
-                    TipoProducto = "Accesorios"
+                    TipoProducto = "Perifericos",
+                    Activo = true,
+                    Telefono = "3212222",
+                    Email = "aajdha@Ecci.edu.co"
                 }
             );
             db.SaveChanges();

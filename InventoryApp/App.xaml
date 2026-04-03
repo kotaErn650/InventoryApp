@@ -11,6 +11,8 @@
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:BoolToEstadoConverter x:Key="BoolToEstadoConverter"/>
+            <converters:BoolToToggleTextConverter x:Key="BoolToToggleTextConverter"/>
+            <converters:BoolToToggleColorConverter x:Key="BoolToToggleColorConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

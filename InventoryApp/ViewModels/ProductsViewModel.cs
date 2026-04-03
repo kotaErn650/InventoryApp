@@ -15,6 +15,9 @@ public class ProductsViewModel : BaseViewModel
     public RelayCommand DisableCommand { get; }
     public RelayCommand EditCommand { get; }
     public RelayCommand NewCommand { get; }
+    public RelayCommand GoInicioCommand { get; }
+    public RelayCommand GoProductsCommand { get; }
+    public RelayCommand GoProveedoresCommand { get; }
 
     public ProductsViewModel(ProductService service)
     {
@@ -24,6 +27,9 @@ public class ProductsViewModel : BaseViewModel
         DisableCommand = new RelayCommand(async p => await Disable((Product)p!));
         EditCommand = new RelayCommand(async p => await Edit((Product)p!));
         NewCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("productform"));
+        GoInicioCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("//dashboard"));
+        GoProductsCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("products"));
+        GoProveedoresCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("proveedores"));
     }
 
     public async Task Load()
