@@ -88,6 +88,25 @@ public class ProveedorFormViewModel : BaseViewModel, IQueryAttributable
 
     private async Task Save()
     {
+        if (string.IsNullOrWhiteSpace(Nombre))
+        {
+            await Shell.Current.DisplayAlertAsync("Error", "El nombre del proveedor es obligatorio.", "OK");
+            return;
+        }
+
+        if (string.IsNullOrWhiteSpace(TipoProducto))
+        {
+            await Shell.Current.DisplayAlertAsync("Error", "El tipo de producto es obligatorio.", "OK");
+            return;
+        }
+
+        if (!string.IsNullOrWhiteSpace(Email) &&
+            !Email.Contains('@'))
+        {
+            await Shell.Current.DisplayAlertAsync("Error", "El correo electrónico no es válido.", "OK");
+            return;
+        }
+
         if (_editingProveedor != null)
         {
             _editingProveedor.Nombre = Nombre;
