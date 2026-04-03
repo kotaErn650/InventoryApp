@@ -30,11 +30,13 @@ public static class MauiProgram
         builder.Services.AddTransient<ProductsViewModel>();
         builder.Services.AddTransient<ProductFormViewModel>();
         builder.Services.AddTransient<ProveedoresViewModel>();
+        builder.Services.AddTransient<ProveedorFormViewModel>();
 
         builder.Services.AddTransient<DashboardPage>();
         builder.Services.AddTransient<ProductsPage>();
         builder.Services.AddTransient<ProductFormPage>();
         builder.Services.AddTransient<ProveedoresPage>();
+        builder.Services.AddTransient<ProveedorFormPage>();
 
         var app = builder.Build();
 
@@ -103,28 +105,32 @@ public static class MauiProgram
                     Id = Guid.NewGuid(),
                     Foto = "dotnet_bot.png",
                     Nombre = "TechDistribuciones S.A.",
-                    TipoProducto = "Electrónica"
+                    TipoProducto = "Electrónica",
+                    Activo = true
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
                     Foto = "ecci.png",
                     Nombre = "OfficeSupplies Ltda.",
-                    TipoProducto = "Papelería y Oficina"
+                    TipoProducto = "Papelería y Oficina",
+                    Activo = true
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
                     Foto = "dotnet_bot.png",
                     Nombre = "Hardware Pro",
-                    TipoProducto = "Componentes de Computadora"
+                    TipoProducto = "Componentes de Computadora",
+                    Activo = true
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
                     Foto = "ecci.png",
                     Nombre = "MegaImport Corp.",
-                    TipoProducto = "Accesorios"
+                    TipoProducto = "Accesorios",
+                    Activo = true
                 }
             );
             db.SaveChanges();
