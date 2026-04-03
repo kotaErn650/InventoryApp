@@ -23,13 +23,18 @@ public static class MauiProgram
         builder.Services.AddSingleton<IProductRepository, ProductRepository>();
         builder.Services.AddSingleton<ProductService>();
 
+        builder.Services.AddSingleton<IProveedorRepository, ProveedorRepository>();
+        builder.Services.AddSingleton<ProveedorService>();
+
         builder.Services.AddTransient<DashboardViewModel>();
         builder.Services.AddTransient<ProductsViewModel>();
         builder.Services.AddTransient<ProductFormViewModel>();
+        builder.Services.AddTransient<ProveedoresViewModel>();
 
         builder.Services.AddTransient<DashboardPage>();
         builder.Services.AddTransient<ProductsPage>();
         builder.Services.AddTransient<ProductFormPage>();
+        builder.Services.AddTransient<ProveedoresPage>();
 
         var app = builder.Build();
 
@@ -85,6 +90,41 @@ public static class MauiProgram
                     Stock = 5,
                     Activo = true,
                     FechaCreacion = DateTime.UtcNow
+                }
+            );
+            db.SaveChanges();
+        }
+
+        if (!db.Proveedores.Any())
+        {
+            db.Proveedores.AddRange(
+                new Proveedor
+                {
+                    Id = Guid.NewGuid(),
+                    Foto = "https://i.pravatar.cc/150?img=1",
+                    Nombre = "TechDistribuciones S.A.",
+                    TipoProducto = "Electrónica"
+                },
+                new Proveedor
+                {
+                    Id = Guid.NewGuid(),
+                    Foto = "https://i.pravatar.cc/150?img=2",
+                    Nombre = "OfficeSupplies Ltda.",
+                    TipoProducto = "Papelería y Oficina"
+                },
+                new Proveedor
+                {
+                    Id = Guid.NewGuid(),
+                    Foto = "https://i.pravatar.cc/150?img=3",
+                    Nombre = "Hardware Pro",
+                    TipoProducto = "Componentes de Computadora"
+                },
+                new Proveedor
+                {
+                    Id = Guid.NewGuid(),
+                    Foto = "https://i.pravatar.cc/150?img=4",
+                    Nombre = "MegaImport Corp.",
+                    TipoProducto = "Accesorios"
                 }
             );
             db.SaveChanges();
