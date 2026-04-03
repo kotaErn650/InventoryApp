@@ -101,28 +101,28 @@ public static class MauiProgram
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "https://i.pravatar.cc/150?img=1",
+                    Foto = "dotnet_bot.png",
                     Nombre = "TechDistribuciones S.A.",
                     TipoProducto = "Electrónica"
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "https://i.pravatar.cc/150?img=2",
+                    Foto = "ecci.png",
                     Nombre = "OfficeSupplies Ltda.",
                     TipoProducto = "Papelería y Oficina"
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "https://i.pravatar.cc/150?img=3",
+                    Foto = "dotnet_bot.png",
                     Nombre = "Hardware Pro",
                     TipoProducto = "Componentes de Computadora"
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "https://i.pravatar.cc/150?img=4",
+                    Foto = "ecci.png",
                     Nombre = "MegaImport Corp.",
                     TipoProducto = "Accesorios"
                 }
