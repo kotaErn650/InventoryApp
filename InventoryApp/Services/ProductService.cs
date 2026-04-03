@@ -1,7 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 using InventoryApp.Models;
 using InventoryApp.Repositories;
 
@@ -19,6 +15,11 @@ public class ProductService
     public async Task<List<Product>> GetProducts()
     {
         return await _repository.GetAll();
+    }
+
+    public async Task<Product?> GetById(Guid id)
+    {
+        return await _repository.GetById(id);
     }
 
     public async Task Create(Product product)

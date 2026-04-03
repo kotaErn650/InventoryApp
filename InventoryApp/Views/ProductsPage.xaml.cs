@@ -17,8 +17,4 @@ public partial class ProductsPage : ContentPage
         if (BindingContext is ProductsViewModel vm)
             vm.LoadCommand.Execute(null);
     }
-    private async void OnHolaClicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("DashboardPage");
-    }
 }

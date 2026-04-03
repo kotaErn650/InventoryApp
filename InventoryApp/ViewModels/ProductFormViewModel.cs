@@ -1,47 +1,108 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
 using InventoryApp.Models;
 using InventoryApp.Services;
 using InventoryApp.Commands;
 
 namespace InventoryApp.ViewModels;
 
-public class ProductFormViewModel : BaseViewModel
+public class ProductFormViewModel : BaseViewModel, IQueryAttributable
 {
     private readonly ProductService _service;
+    private Product? _editingProduct;
 
-    public string Nombre { get; set; }
+    private string _nombre = "";
+    public string Nombre
+    {
+        get => _nombre;
+        set => SetProperty(ref _nombre, value);
+    }
 
-    public string Descripcion { get; set; }
+    private string _descripcion = "";
+    public string Descripcion
+    {
+        get => _descripcion;
+        set => SetProperty(ref _descripcion, value);
+    }
 
-    public decimal Precio { get; set; }
+    private decimal _precio;
+    public decimal Precio
+    {
+        get => _precio;
+        set => SetProperty(ref _precio, value);
+    }
 
-    public int Stock { get; set; }
+    private int _stock;
+    public int Stock
+    {
+        get => _stock;
+        set => SetProperty(ref _stock, value);
+    }
+
+    private string _title = "Nuevo Producto";
+    public string Title
+    {
+        get => _title;
+        set => SetProperty(ref _title, value);
+    }
 
     public RelayCommand SaveCommand { get; }
 
     public ProductFormViewModel(ProductService service)
     {
         _service = service;
-
         SaveCommand = new RelayCommand(async _ => await Save());
+    }
+
+    public void ApplyQueryAttributes(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue("productId", out var raw) &&
+            Guid.TryParse(raw?.ToString(), out var id))
+        {
+            LoadProduct(id)
+                .ContinueWith(t =>
+                {
+                    if (t.IsFaulted)
+                        System.Diagnostics.Debug.WriteLine($"[ProductFormViewModel] Error loading product: {t.Exception}");
+                }, TaskScheduler.Default);
+        }
+    }
+
+    private async Task LoadProduct(Guid id)
+    {
+        var product = await _service.GetById(id);
+        if (product is null) return;
+
+        _editingProduct = product;
+        Nombre = product.Nombre;
+        Descripcion = product.Descripcion;
+        Precio = product.Precio;
+        Stock = product.Stock;
+        Title = "Editar Producto";
     }
 
     private async Task Save()
     {
-        var product = new Product
+        if (_editingProduct != null)
         {
-            Id = Guid.NewGuid(),
-            Nombre = Nombre,
-            Descripcion = Descripcion,
-            Precio = Precio,
-            Stock = Stock,
-            Activo = true
-        };
-
-        await _service.Create(product);
+            _editingProduct.Nombre = Nombre;
+            _editingProduct.Descripcion = Descripcion;
+            _editingProduct.Precio = Precio;
+            _editingProduct.Stock = Stock;
+            await _service.Update(_editingProduct);
+        }
+        else
+        {
+            var product = new Product
+            {
+                Id = Guid.NewGuid(),
+                Nombre = Nombre,
+                Descripcion = Descripcion,
+                Precio = Precio,
+                Stock = Stock,
+                Activo = true,
+                FechaCreacion = DateTime.UtcNow
+            };
+            await _service.Create(product);
+        }
 
         await Shell.Current.GoToAsync("..");
     }
