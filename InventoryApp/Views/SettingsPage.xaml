@@ -1,42 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InventoryApp.Views.ConfiguracionPage"
-             Title="HelpSopor">
+             x:Class="InventoryApp.Views.SettingsPage"
+             Title="Operación">
 
     <Grid RowDefinitions="*,Auto">
-
         <ScrollView Grid.Row="0">
             <VerticalStackLayout Padding="20" Spacing="16">
-
-                <Label Text="HelpSopor"
+                <Label Text="Operación del festival"
                        FontSize="28"
                        FontAttributes="Bold"
-                       HorizontalOptions="Center"/>
+                       HorizontalOptions="Center" />
 
-                <Label Text="Módulo de configuración y soporte del sistema."
+                <Label Text="Configura alertas, sincronización y soporte para tu agenda de conciertos."
                        HorizontalOptions="Center"
                        HorizontalTextAlignment="Center"
-                       TextColor="Gray"/>
+                       TextColor="Gray" />
 
                 <Border Padding="16" StrokeShape="RoundRectangle 12">
                     <VerticalStackLayout Spacing="12">
                         <Label Text="Preferencias"
                                FontAttributes="Bold"
-                               FontSize="18"/>
+                               FontSize="18" />
 
                         <Grid ColumnDefinitions="*,Auto">
-                            <Label Text="Notificaciones activas"
-                                   VerticalOptions="Center"/>
+                            <Label Text="Alertas de preventa"
+                                   VerticalOptions="Center" />
                             <Switch Grid.Column="1"
-                                    IsToggled="{Binding NotificacionesActivas}"/>
+                                    IsToggled="{Binding AlertasVenta}" />
                         </Grid>
 
                         <Grid ColumnDefinitions="*,Auto">
-                            <Label Text="Modo oscuro"
-                                   VerticalOptions="Center"/>
+                            <Label Text="Sincronización automática"
+                                   VerticalOptions="Center" />
                             <Switch Grid.Column="1"
-                                    IsToggled="{Binding ModoOscuro}"/>
+                                    IsToggled="{Binding SincronizacionAutomatica}" />
                         </Grid>
                     </VerticalStackLayout>
                 </Border>
@@ -45,13 +43,12 @@
                     <VerticalStackLayout Spacing="8">
                         <Label Text="Soporte"
                                FontAttributes="Bold"
-                               FontSize="18"/>
-                        <Label Text="Correo: soporte@inventoryapp.local"/>
-                        <Label Text="Horario: Lunes a viernes, 8:00 AM - 5:00 PM"/>
-                        <Label Text="Versión: 1.0"/>
+                               FontSize="18" />
+                        <Label Text="Correo: operaciones@concertflow.local" />
+                        <Label Text="Horario: Lunes a sábado, 9:00 AM - 6:00 PM" />
+                        <Label Text="Módulos: eventos, artistas y seguimiento operativo" />
                     </VerticalStackLayout>
                 </Border>
-
             </VerticalStackLayout>
         </ScrollView>
 
@@ -59,32 +56,26 @@
               BackgroundColor="#191919"
               Padding="10"
               ColumnDefinitions="*,*,*,*">
-
             <Button Grid.Column="0"
                     Text="Inicio"
                     BackgroundColor="Transparent"
                     TextColor="#00FFFF"
-                    Command="{Binding GoInicioCommand}"/>
-
+                    Command="{Binding GoInicioCommand}" />
             <Button Grid.Column="1"
-                    Text="Productos"
+                    Text="Eventos"
                     BackgroundColor="Transparent"
                     TextColor="#FF10F0"
-                    Command="{Binding GoProductsCommand}"/>
-
+                    Command="{Binding GoEventsCommand}" />
             <Button Grid.Column="2"
-                    Text="Proveedores"
+                    Text="Artistas"
                     BackgroundColor="Transparent"
                     TextColor="#FFA500"
-                    Command="{Binding GoProveedoresCommand}"/>
-
+                    Command="{Binding GoArtistsCommand}" />
             <Button Grid.Column="3"
-                    Text="HelpSopor"
+                    Text="Operación"
                     BackgroundColor="Transparent"
                     TextColor="#39FF14"
-                    Command="{Binding GoConfiguracionCommand}"/>
-
+                    Command="{Binding GoSettingsCommand}" />
         </Grid>
-
     </Grid>
 </ContentPage>

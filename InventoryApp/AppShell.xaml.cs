@@ -8,10 +8,10 @@ public partial class AppShell : Shell
     {
         InitializeComponent();
 
-        Routing.RegisterRoute("products", typeof(ProductsPage));
-        Routing.RegisterRoute("productform", typeof(ProductFormPage));
-        Routing.RegisterRoute("proveedores", typeof(ProveedoresPage));
-        Routing.RegisterRoute("proveedorform", typeof(ProveedorFormPage));
-        Routing.RegisterRoute("configuracion", typeof(ConfiguracionPage));
+        Routing.RegisterRoute("events", typeof(EventsPage));
+        Routing.RegisterRoute("eventform", typeof(EventFormPage));
+        Routing.RegisterRoute("artists", typeof(ArtistsPage));
+        Routing.RegisterRoute("artistform", typeof(ArtistFormPage));
+        Routing.RegisterRoute("settings", typeof(SettingsPage));
     }
 }

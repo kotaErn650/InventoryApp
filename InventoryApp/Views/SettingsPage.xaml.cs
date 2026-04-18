@@ -2,9 +2,9 @@ using InventoryApp.ViewModels;
 
 namespace InventoryApp.Views;
 
-public partial class ProveedorFormPage : ContentPage
+public partial class SettingsPage : ContentPage
 {
-    public ProveedorFormPage(ProveedorFormViewModel vm)
+    public SettingsPage(SettingsViewModel vm)
     {
         InitializeComponent();
         BindingContext = vm;

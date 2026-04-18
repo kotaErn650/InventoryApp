@@ -15,30 +15,30 @@ public static class MauiProgram
         builder.UseMauiApp<InventoryApp.App>();
 
         builder.Services.AddDbContext<AppDbContext>(
-            opt => opt.UseInMemoryDatabase("InventoryDb"),
+            opt => opt.UseInMemoryDatabase("ConcertFlowDb"),
             ServiceLifetime.Singleton);
 
         builder.Services.AddSingleton<DbContextFactory>();
 
-        builder.Services.AddSingleton<IProductRepository, ProductRepository>();
-        builder.Services.AddSingleton<ProductService>();
+        builder.Services.AddSingleton<IConcertEventRepository, ConcertEventRepository>();
+        builder.Services.AddSingleton<ConcertEventService>();
 
-        builder.Services.AddSingleton<IProveedorRepository, ProveedorRepository>();
-        builder.Services.AddSingleton<ProveedorService>();
+        builder.Services.AddSingleton<IArtistRepository, ArtistRepository>();
+        builder.Services.AddSingleton<ArtistService>();
 
         builder.Services.AddTransient<DashboardViewModel>();
-        builder.Services.AddTransient<ProductsViewModel>();
-        builder.Services.AddTransient<ProductFormViewModel>();
-        builder.Services.AddTransient<ProveedoresViewModel>();
-        builder.Services.AddTransient<ProveedorFormViewModel>();
-        builder.Services.AddTransient<ConfiguracionViewModel>();
+        builder.Services.AddTransient<EventsViewModel>();
+        builder.Services.AddTransient<EventFormViewModel>();
+        builder.Services.AddTransient<ArtistsViewModel>();
+        builder.Services.AddTransient<ArtistFormViewModel>();
+        builder.Services.AddTransient<SettingsViewModel>();
 
         builder.Services.AddTransient<DashboardPage>();
-        builder.Services.AddTransient<ProductsPage>();
-        builder.Services.AddTransient<ProductFormPage>();
-        builder.Services.AddTransient<ProveedoresPage>();
-        builder.Services.AddTransient<ProveedorFormPage>();
-        builder.Services.AddTransient<ConfiguracionPage>();
+        builder.Services.AddTransient<EventsPage>();
+        builder.Services.AddTransient<EventFormPage>();
+        builder.Services.AddTransient<ArtistsPage>();
+        builder.Services.AddTransient<ArtistFormPage>();
+        builder.Services.AddTransient<SettingsPage>();
 
         var app = builder.Build();
 
@@ -52,93 +52,87 @@ public static class MauiProgram
         var db = services.GetRequiredService<AppDbContext>();
         db.Database.EnsureCreated();
 
-        if (!db.Products.Any())
+        if (!db.ConcertEvents.Any())
         {
-            db.Products.AddRange(
-                new Product
+            db.ConcertEvents.AddRange(
+                new ConcertEvent
                 {
                     Id = Guid.NewGuid(),
-                    Nombre = "Laptop",
-                    Descripcion = "Laptop Dell XPS 15",
-                    Precio = 3500m,
-                    Stock = 10,
-                    Activo = true,
-                    FechaCreacion = DateTime.UtcNow
+                    Titulo = "Neon Nights Tour",
+                    Artista = "Luna Vector",
+                    Lugar = "Arena Capital",
+                    Ciudad = "Bogotá",
+                    FechaEvento = DateTime.Today.AddDays(12),
+                    PrecioEntrada = 180000m,
+                    Capacidad = 18000,
+                    Estado = "Programado",
+                    Destacado = true,
+                    Descripcion = "Show principal con opening act y experiencia VIP."
                 },
-                new Product
+                new ConcertEvent
                 {
                     Id = Guid.NewGuid(),
-                    Nombre = "Mouse",
-                    Descripcion = "Mouse inalámbrico Logitech",
-                    Precio = 80000m,
-                    Stock = 50,
-                    Activo = true,
-                    FechaCreacion = DateTime.UtcNow
+                    Titulo = "Pulse Fest",
+                    Artista = "Distrito Sonoro",
+                    Lugar = "Parque Metropolitano",
+                    Ciudad = "Medellín",
+                    FechaEvento = DateTime.Today.AddDays(25),
+                    PrecioEntrada = 120000m,
+                    Capacidad = 22000,
+                    Estado = "Programado",
+                    Destacado = false,
+                    Descripcion = "Festival urbano con tres escenarios y food court."
                 },
-                new Product
+                new ConcertEvent
                 {
                     Id = Guid.NewGuid(),
-                    Nombre = "Teclado",
-                    Descripcion = "Teclado mecánico RGB",
-                    Precio = 150000,
-                    Stock = 30,
-                    Activo = true,
-                    FechaCreacion = DateTime.UtcNow
-                },
-                new Product
-                {
-                    Id = Guid.NewGuid(),
-                    Nombre = "Monitor",
-                    Descripcion = "Monitor 27\" 4K UHD",
-                    Precio = 800M,
-                    Stock = 5,
-                    Activo = true,
-                    FechaCreacion = DateTime.UtcNow
+                    Titulo = "Acoustic Sessions",
+                    Artista = "Valeria Norte",
+                    Lugar = "Teatro Central",
+                    Ciudad = "Cali",
+                    FechaEvento = DateTime.Today.AddDays(6),
+                    PrecioEntrada = 95000m,
+                    Capacidad = 1200,
+                    Estado = "Agotado",
+                    Destacado = true,
+                    Descripcion = "Concierto íntimo con set acústico y meet & greet."
                 }
             );
             db.SaveChanges();
         }
 
-        if (!db.Proveedores.Any())
+        if (!db.Artists.Any())
         {
-            db.Proveedores.AddRange(
-                new Proveedor
+            db.Artists.AddRange(
+                new Artist
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "hard.png",
-                    Nombre = "TechDistribuciones S.A.",
-                    TipoProducto = "Electrónica",
+                    Nombre = "Luna Vector",
+                    Genero = "Electropop",
+                    Manager = "Camila Pérez",
+                    Telefono = "3001234567",
+                    Email = "booking@lunavector.com",
                     Activo = true
                 },
-                new Proveedor
+                new Artist
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "offi.png",
-                    Nombre = "OfficeSupplies Ltda.",
-                    TipoProducto = "Papelería y Oficina",
-                    Activo = true,
-                    Telefono = "3212222",
-                    Email= "aajdha@Ecci.edu.co"
+                    Nombre = "Distrito Sonoro",
+                    Genero = "Urbano",
+                    Manager = "Carlos Mejía",
+                    Telefono = "3012223344",
+                    Email = "shows@distritosonoro.com",
+                    Activo = true
                 },
-                new Proveedor
+                new Artist
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "hard.png",
-                    Nombre = "Hardware Pro",
-                    TipoProducto = "Componentes de Computadora",
-                    Activo = true,
-                    Telefono = "3212222",
-                    Email = "aajdha@Ecci.edu.co"
-                },
-                new Proveedor
-                {
-                    Id = Guid.NewGuid(),
-                    Foto = "per.png",
-                    Nombre = "MegaImport Corp.",
-                    TipoProducto = "Perifericos",
-                    Activo = true,
-                    Telefono = "3212222",
-                    Email = "aajdha@Ecci.edu.co"
+                    Nombre = "Valeria Norte",
+                    Genero = "Pop acústico",
+                    Manager = "Laura Gómez",
+                    Telefono = "3025556677",
+                    Email = "contacto@valerianorte.com",
+                    Activo = true
                 }
             );
             db.SaveChanges();

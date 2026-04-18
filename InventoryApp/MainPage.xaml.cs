@@ -1,30 +1,21 @@
-﻿namespace InventoryApp
+namespace InventoryApp;
+
+public partial class MainPage : ContentPage
 {
-    public partial class MainPage : ContentPage
+    public MainPage()
     {
-        int count = 0;
+        InitializeComponent();
+    }
 
-        public MainPage()
-        {
-            InitializeComponent();
-        }
+    private async void OnGoDashboardClicked(object? sender, EventArgs e)
+    {
+        if (Shell.Current is not null)
+            await Shell.Current.GoToAsync("//dashboard");
+    }
 
-        private void OnCounterClicked(object? sender, EventArgs e)
-        {
-            count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
-        }
-
-        private async void OnHelpSoporClicked(object? sender, EventArgs e)
-        {
-            if (Shell.Current is not null)
-                await Shell.Current.GoToAsync("configuracion");
-        }
+    private async void OnGoSettingsClicked(object? sender, EventArgs e)
+    {
+        if (Shell.Current is not null)
+            await Shell.Current.GoToAsync("settings");
     }
 }

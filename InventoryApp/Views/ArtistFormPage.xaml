@@ -1,83 +1,75 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InventoryApp.Views.ProveedorFormPage"
+             x:Class="InventoryApp.Views.ArtistFormPage"
              Title="{Binding Title}">
     <Grid RowDefinitions="*,Auto">
-
         <ScrollView Grid.Row="0">
-
             <VerticalStackLayout Padding="20" Spacing="12">
+                <Label Text="Nombre artístico" FontAttributes="Bold" />
+                <Entry Placeholder="Nombre del artista o banda"
+                       Text="{Binding Nombre}" />
 
-                <Label Text="Nombre" FontAttributes="Bold"/>
-                <Entry Placeholder="Nombre del proveedor"
-                       Text="{Binding Nombre}"/>
+                <Label Text="Género" FontAttributes="Bold" />
+                <Entry Placeholder="Rock, pop, urbano..."
+                       Text="{Binding Genero}" />
 
-                <Label Text="Tipo de Producto" FontAttributes="Bold"/>
-                <Entry Placeholder="Ej. Electrónica, Papelería..."
-                       Text="{Binding TipoProducto}"/>
+                <Label Text="Manager" FontAttributes="Bold" />
+                <Entry Placeholder="Responsable de booking"
+                       Text="{Binding Manager}" />
 
-                <Label Text="Teléfono" FontAttributes="Bold"/>
+                <Label Text="Teléfono" FontAttributes="Bold" />
                 <Entry Placeholder="Número de contacto"
                        Keyboard="Telephone"
-                       Text="{Binding Telefono}"/>
+                       Text="{Binding Telefono}" />
 
-                <Label Text="Correo Electrónico" FontAttributes="Bold"/>
-                <Entry Placeholder="correo@ejemplo.com"
+                <Label Text="Correo electrónico" FontAttributes="Bold" />
+                <Entry Placeholder="booking@artista.com"
                        Keyboard="Email"
-                       Text="{Binding Email}"/>
+                       Text="{Binding Email}" />
 
-                <Label Text="Estado" FontAttributes="Bold"/>
+                <Label Text="Estado" FontAttributes="Bold" />
                 <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
                     <Label Grid.Column="0"
                            Text="{Binding Activo, Converter={StaticResource BoolToEstadoConverter}}"
                            VerticalOptions="Center"
-                           FontSize="14"/>
+                           FontSize="14" />
                     <Switch Grid.Column="1"
                             IsToggled="{Binding Activo}"
-                            VerticalOptions="Center"/>
+                            VerticalOptions="Center" />
                 </Grid>
 
-                <Button Text="💾  Guardar"
+                <Button Text="💾 Guardar artista"
                         Command="{Binding SaveCommand}"
                         HeightRequest="50"
-                        Margin="0,10,0,0"/>
-
+                        Margin="0,10,0,0" />
             </VerticalStackLayout>
-
         </ScrollView>
 
-        <!-- Footer -->
         <Grid Grid.Row="1"
               BackgroundColor="#191919"
               Padding="10"
               ColumnDefinitions="*,*,*,*">
-
             <Button Grid.Column="0"
                     Text="Inicio"
                     BackgroundColor="Transparent"
                     TextColor="#00FFFF"
-                    Command="{Binding GoInicioCommand}"/>
-
+                    Command="{Binding GoInicioCommand}" />
             <Button Grid.Column="1"
-                    Text="Productos"
+                    Text="Eventos"
                     BackgroundColor="Transparent"
                     TextColor="#FF10F0"
-                    Command="{Binding GoProductsCommand}"/>
-
+                    Command="{Binding GoEventsCommand}" />
             <Button Grid.Column="2"
-                    Text="Proveedores"
+                    Text="Artistas"
                     BackgroundColor="Transparent"
                     TextColor="#FFA500"
-                    Command="{Binding GoProveedoresCommand}"/>
-
+                    Command="{Binding GoArtistsCommand}" />
             <Button Grid.Column="3"
-                    Text="HelpSopor"
+                    Text="Operación"
                     BackgroundColor="Transparent"
                     TextColor="#39FF14"
-                    Command="{Binding GoConfiguracionCommand}"/>
-
+                    Command="{Binding GoSettingsCommand}" />
         </Grid>
-
     </Grid>
 </ContentPage>
