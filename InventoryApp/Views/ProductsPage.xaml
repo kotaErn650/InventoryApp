@@ -97,9 +97,10 @@
                     Command="{Binding GoProveedoresCommand}"/>
 
             <Button Grid.Column="3"
-                    Text="Perfil"
+                    Text="HelpSopor"
                     BackgroundColor="Transparent"
-                    TextColor="#39FF14"/>
+                    TextColor="#39FF14"
+                    Command="{Binding GoConfiguracionCommand}"/>
 
         </Grid>
 

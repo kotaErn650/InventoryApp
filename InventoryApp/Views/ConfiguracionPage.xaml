@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InventoryApp.Views.ConfiguracionPage"
+             Title="HelpSopor">
+
+    <Grid RowDefinitions="*,Auto">
+
+        <ScrollView Grid.Row="0">
+            <VerticalStackLayout Padding="20" Spacing="16">
+
+                <Label Text="HelpSopor"
+                       FontSize="28"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+
+                <Label Text="Módulo de configuración y soporte del sistema."
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center"
+                       TextColor="Gray"/>
+
+                <Border Padding="16" StrokeShape="RoundRectangle 12">
+                    <VerticalStackLayout Spacing="12">
+                        <Label Text="Preferencias"
+                               FontAttributes="Bold"
+                               FontSize="18"/>
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Notificaciones activas"
+                                   VerticalOptions="Center"/>
+                            <Switch Grid.Column="1"
+                                    IsToggled="{Binding NotificacionesActivas}"/>
+                        </Grid>
+
+                        <Grid ColumnDefinitions="*,Auto">
+                            <Label Text="Modo oscuro"
+                                   VerticalOptions="Center"/>
+                            <Switch Grid.Column="1"
+                                    IsToggled="{Binding ModoOscuro}"/>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Padding="16" StrokeShape="RoundRectangle 12">
+                    <VerticalStackLayout Spacing="8">
+                        <Label Text="Soporte"
+                               FontAttributes="Bold"
+                               FontSize="18"/>
+                        <Label Text="Correo: soporte@inventoryapp.local"/>
+                        <Label Text="Horario: Lunes a viernes, 8:00 AM - 5:00 PM"/>
+                        <Label Text="Versión: 1.0"/>
+                    </VerticalStackLayout>
+                </Border>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <Grid Grid.Row="1"
+              BackgroundColor="#191919"
+              Padding="10"
+              ColumnDefinitions="*,*,*,*">
+
+            <Button Grid.Column="0"
+                    Text="Inicio"
+                    BackgroundColor="Transparent"
+                    TextColor="#00FFFF"
+                    Command="{Binding GoInicioCommand}"/>
+
+            <Button Grid.Column="1"
+                    Text="Productos"
+                    BackgroundColor="Transparent"
+                    TextColor="#FF10F0"
+                    Command="{Binding GoProductsCommand}"/>
+
+            <Button Grid.Column="2"
+                    Text="Proveedores"
+                    BackgroundColor="Transparent"
+                    TextColor="#FFA500"
+                    Command="{Binding GoProveedoresCommand}"/>
+
+            <Button Grid.Column="3"
+                    Text="HelpSopor"
+                    BackgroundColor="Transparent"
+                    TextColor="#39FF14"
+                    Command="{Binding GoConfiguracionCommand}"/>
+
+        </Grid>
+
+    </Grid>
+</ContentPage>
