@@ -1,66 +1,57 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="InventoryApp.MainPage">
+             x:Class="InventoryApp.MainPage"
+             BackgroundColor="{StaticResource Gray100}">
 
     <Grid RowDefinitions="*,Auto">
-
-        <!-- my CONTENIDO -->
         <ScrollView Grid.Row="0">
-            <VerticalStackLayout Padding="0,0" Spacing="25">
-
-                <Grid HeightRequest="150">
-
-                    <Grid.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#00FFFF" Offset="0.0"/>
-                            <GradientStop Color="#40FF00" Offset="1.0"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-
-                    <Image
-                    Source="kota_bot.png"
-                    Aspect="AspectFit"
-                    HeightRequest="150"/>
-
-                </Grid>
-
-                <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Fill"/>
-
+            <VerticalStackLayout Padding="24" Spacing="22">
+                <Border StrokeThickness="0"
+                        BackgroundColor="#1E1B4B"
+                        StrokeShape="RoundRectangle 24"
+                        Padding="24">
+                    <VerticalStackLayout Spacing="12">
+                        <Image Source="event_dashboard.svg"
+                               HeightRequest="170"
+                               Aspect="AspectFit"/>
+                        <Label Text="VivaEventos"
+                               FontSize="30"
+                               FontAttributes="Bold"
+                               TextColor="White"/>
+                        <Label Text="Una experiencia visual renovada para coordinar eventos y aliados desde móvil."
+                               TextColor="#CBD5E1"/>
+                        <Button x:Name="CounterBtn"
+                                Text="🎉 Explorar concepto"
+                                Clicked="OnCounterClicked"
+                                BackgroundColor="#F97316"
+                                TextColor="White"/>
+                    </VerticalStackLayout>
+                </Border>
             </VerticalStackLayout>
         </ScrollView>
 
-
-        <!-- mY fOOTer -->
         <Grid Grid.Row="1"
-          BackgroundColor="#191919"
-          Padding="10"
-          ColumnDefinitions="*,*,*">
+              BackgroundColor="#0F172A"
+              Padding="10"
+              ColumnDefinitions="*,*,*">
 
-            <Button
-            Grid.Column="0"
-            Text="Inicio"
-            BackgroundColor="Transparent"
-            TextColor="#00FFFF"/>
+            <Button Grid.Column="0"
+                    Text="🏠 Inicio"
+                    BackgroundColor="Transparent"
+                    TextColor="#F8FAFC"/>
 
-            <Button
-            Grid.Column="1"
-            Text="Productos"
-            BackgroundColor="Transparent"
-            TextColor="#FF10F0"/>
+            <Button Grid.Column="1"
+                    Text="🎟️ Eventos"
+                    BackgroundColor="Transparent"
+                    TextColor="#A78BFA"/>
 
-            <Button
-            Grid.Column="2"
-            Text="Perfil"
-            BackgroundColor="Transparent"
-            TextColor="#39FF14"/>
+            <Button Grid.Column="2"
+                    Text="✨ Marca"
+                    BackgroundColor="Transparent"
+                    TextColor="#22D3EE"/>
 
         </Grid>
-
     </Grid>
 
 </ContentPage>
