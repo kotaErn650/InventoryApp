@@ -55,9 +55,10 @@
 
             <Button
             Grid.Column="2"
-            Text="Perfil"
+            Text="HelpSopor"
             BackgroundColor="Transparent"
-            TextColor="#39FF14"/>
+            TextColor="#39FF14"
+            Clicked="OnHelpSoporClicked"/>
 
         </Grid>
 
