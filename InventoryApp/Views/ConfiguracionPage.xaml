@@ -81,8 +81,7 @@
             <Button Grid.Column="3"
                     Text="HelpSopor"
                     BackgroundColor="Transparent"
-                    TextColor="#39FF14"
-                    Command="{Binding GoConfiguracionCommand}"/>
+                    TextColor="#39FF14"/>
 
         </Grid>
 

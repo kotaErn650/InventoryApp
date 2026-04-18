@@ -21,13 +21,11 @@ public class ConfiguracionViewModel : BaseViewModel
     public RelayCommand GoInicioCommand { get; }
     public RelayCommand GoProductsCommand { get; }
     public RelayCommand GoProveedoresCommand { get; }
-    public RelayCommand GoConfiguracionCommand { get; }
 
     public ConfiguracionViewModel()
     {
         GoInicioCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("//dashboard"));
         GoProductsCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("products"));
         GoProveedoresCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("proveedores"));
-        GoConfiguracionCommand = new RelayCommand(async _ => await Shell.Current.GoToAsync("configuracion"));
     }
 }
