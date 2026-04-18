@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using InventoryApp.Models;
 using InventoryApp.Services;
 using InventoryApp.Commands;
@@ -11,14 +10,14 @@ public class ProveedoresViewModel : BaseViewModel
     private readonly List<Proveedor> _allProveedores = new();
     private string _searchText = string.Empty;
 
-    public ObservableCollection<Proveedor> Proveedores { get; set; } = new();
+    public IEnumerable<Proveedor> Proveedores => GetFilteredProveedores();
     public string SearchText
     {
         get => _searchText;
         set
         {
             SetProperty(ref _searchText, value);
-            ApplyFilter();
+            OnPropertyChanged(nameof(Proveedores));
         }
     }
 
@@ -46,30 +45,22 @@ public class ProveedoresViewModel : BaseViewModel
     public async Task Load()
     {
         _allProveedores.Clear();
-        Proveedores.Clear();
 
         var list = await _service.GetProveedores();
         _allProveedores.AddRange(list);
-        ApplyFilter();
+        OnPropertyChanged(nameof(Proveedores));
     }
 
-    private void ApplyFilter()
+    private IEnumerable<Proveedor> GetFilteredProveedores()
     {
-        Proveedores.Clear();
+        if (string.IsNullOrWhiteSpace(SearchText))
+            return _allProveedores;
 
-        IEnumerable<Proveedor> filtered = _allProveedores;
-
-        if (!string.IsNullOrWhiteSpace(SearchText))
-        {
-            filtered = _allProveedores.Where(proveedor =>
-                (proveedor.Nombre?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
-                (proveedor.TipoProducto?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
-                (proveedor.Telefono?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
-                (proveedor.Email?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false));
-        }
-
-        foreach (var item in filtered)
-            Proveedores.Add(item);
+        return _allProveedores.Where(proveedor =>
+            (proveedor.Nombre?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (proveedor.TipoProducto?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (proveedor.Telefono?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (proveedor.Email?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false));
     }
 
     private async Task ToggleActivo(Proveedor proveedor)

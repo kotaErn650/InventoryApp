@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using InventoryApp.Models;
 using InventoryApp.Services;
 using InventoryApp.Commands;
@@ -11,14 +10,14 @@ public class ProductsViewModel : BaseViewModel
     private readonly List<Product> _allProducts = new();
     private string _searchText = string.Empty;
 
-    public ObservableCollection<Product> Products { get; set; } = new();
+    public IEnumerable<Product> Products => GetFilteredProducts();
     public string SearchText
     {
         get => _searchText;
         set
         {
             SetProperty(ref _searchText, value);
-            ApplyFilter();
+            OnPropertyChanged(nameof(Products));
         }
     }
 
@@ -46,28 +45,20 @@ public class ProductsViewModel : BaseViewModel
     public async Task Load()
     {
         _allProducts.Clear();
-        Products.Clear();
 
         var list = await _service.GetProducts();
         _allProducts.AddRange(list);
-        ApplyFilter();
+        OnPropertyChanged(nameof(Products));
     }
 
-    private void ApplyFilter()
+    private IEnumerable<Product> GetFilteredProducts()
     {
-        Products.Clear();
+        if (string.IsNullOrWhiteSpace(SearchText))
+            return _allProducts;
 
-        IEnumerable<Product> filtered = _allProducts;
-
-        if (!string.IsNullOrWhiteSpace(SearchText))
-        {
-            filtered = _allProducts.Where(product =>
-                (product.Nombre?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
-                (product.Descripcion?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false));
-        }
-
-        foreach (var item in filtered)
-            Products.Add(item);
+        return _allProducts.Where(product =>
+            (product.Nombre?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
+            (product.Descripcion?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false));
     }
 
     private async Task Disable(Product product)
