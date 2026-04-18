@@ -8,8 +8,19 @@ namespace InventoryApp.ViewModels;
 public class ProveedoresViewModel : BaseViewModel
 {
     private readonly ProveedorService _service;
+    private readonly List<Proveedor> _allProveedores = new();
+    private string _searchText = string.Empty;
 
     public ObservableCollection<Proveedor> Proveedores { get; set; } = new();
+    public string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            SetProperty(ref _searchText, value);
+            ApplyFilter();
+        }
+    }
 
     public RelayCommand LoadCommand { get; }
     public RelayCommand ToggleActivoCommand { get; }
@@ -34,11 +45,30 @@ public class ProveedoresViewModel : BaseViewModel
 
     public async Task Load()
     {
+        _allProveedores.Clear();
         Proveedores.Clear();
 
         var list = await _service.GetProveedores();
+        _allProveedores.AddRange(list);
+        ApplyFilter();
+    }
 
-        foreach (var item in list)
+    private void ApplyFilter()
+    {
+        Proveedores.Clear();
+
+        IEnumerable<Proveedor> filtered = _allProveedores;
+
+        if (!string.IsNullOrWhiteSpace(SearchText))
+        {
+            filtered = _allProveedores.Where(proveedor =>
+                proveedor.Nombre.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
+                proveedor.TipoProducto.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
+                proveedor.Telefono.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
+                proveedor.Email.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+        }
+
+        foreach (var item in filtered)
             Proveedores.Add(item);
     }
 

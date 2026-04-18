@@ -8,8 +8,19 @@ namespace InventoryApp.ViewModels;
 public class ProductsViewModel : BaseViewModel
 {
     private readonly ProductService _service;
+    private readonly List<Product> _allProducts = new();
+    private string _searchText = string.Empty;
 
     public ObservableCollection<Product> Products { get; set; } = new();
+    public string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            SetProperty(ref _searchText, value);
+            ApplyFilter();
+        }
+    }
 
     public RelayCommand LoadCommand { get; }
     public RelayCommand DisableCommand { get; }
@@ -34,11 +45,28 @@ public class ProductsViewModel : BaseViewModel
 
     public async Task Load()
     {
+        _allProducts.Clear();
         Products.Clear();
 
         var list = await _service.GetProducts();
+        _allProducts.AddRange(list);
+        ApplyFilter();
+    }
 
-        foreach (var item in list)
+    private void ApplyFilter()
+    {
+        Products.Clear();
+
+        IEnumerable<Product> filtered = _allProducts;
+
+        if (!string.IsNullOrWhiteSpace(SearchText))
+        {
+            filtered = _allProducts.Where(product =>
+                product.Nombre.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
+                product.Descripcion.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+        }
+
+        foreach (var item in filtered)
             Products.Add(item);
     }
 
