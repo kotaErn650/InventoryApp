@@ -62,8 +62,8 @@ public class ProductsViewModel : BaseViewModel
         if (!string.IsNullOrWhiteSpace(SearchText))
         {
             filtered = _allProducts.Where(product =>
-                product.Nombre.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
-                product.Descripcion.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+                (product.Nombre?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                (product.Descripcion?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false));
         }
 
         foreach (var item in filtered)

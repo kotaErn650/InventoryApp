@@ -62,10 +62,10 @@ public class ProveedoresViewModel : BaseViewModel
         if (!string.IsNullOrWhiteSpace(SearchText))
         {
             filtered = _allProveedores.Where(proveedor =>
-                proveedor.Nombre.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
-                proveedor.TipoProducto.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
-                proveedor.Telefono.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ||
-                proveedor.Email.Contains(SearchText, StringComparison.OrdinalIgnoreCase));
+                (proveedor.Nombre?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                (proveedor.TipoProducto?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                (proveedor.Telefono?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false) ||
+                (proveedor.Email?.Contains(SearchText, StringComparison.OrdinalIgnoreCase) ?? false));
         }
 
         foreach (var item in filtered)
