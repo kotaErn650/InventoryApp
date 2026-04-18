@@ -34,7 +34,7 @@ public class ProductService
 
     public async Task Disable(Product product)
     {
-        product.Activo = false;
+        product.Activo = !product.Activo;
         await _repository.Update(product);
     }
 }

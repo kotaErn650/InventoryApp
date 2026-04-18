@@ -44,7 +44,7 @@ public class ProductFormViewModel : BaseViewModel, IQueryAttributable
         set => SetProperty(ref _activo, value);
     }
 
-    private string _title = "Nuevo Producto";
+    private string _title = "Nuevo Evento";
     public string Title
     {
         get => _title;
@@ -90,7 +90,7 @@ public class ProductFormViewModel : BaseViewModel, IQueryAttributable
         Precio = product.Precio;
         Stock = product.Stock;
         Activo = product.Activo;
-        Title = "Editar Producto";
+        Title = "Editar Evento";
     }
 
     private async Task Save()
