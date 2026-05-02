@@ -93,7 +93,7 @@
                     Command="{Binding GoProductsCommand}" />
 
             <Button Grid.Column="2"
-                    Text="🤝 Organizadores"
+                    Text="Providers"
                     BackgroundColor="Transparent"
                     TextColor="#FDBA74"
                     Command="{Binding GoProveedoresCommand}"/>
