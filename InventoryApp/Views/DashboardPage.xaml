@@ -2,76 +2,106 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InventoryApp.Views.DashboardPage"
-             Title="Dashboard">
+             Title="Inicio VivaEventos"
+             BackgroundColor="{StaticResource Gray100}">
 
     <Grid RowDefinitions="*,Auto">
 
         <ScrollView Grid.Row="0">
-            <VerticalStackLayout Padding="30" Spacing="20">
+            <VerticalStackLayout Padding="24" Spacing="18">
 
-                <Grid HeightRequest="150">
-                    <Grid.Background>
-                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                            <GradientStop Color="#00FFFF" Offset="0.0"/>
-                            <GradientStop Color="#40FF00" Offset="1.0"/>
-                        </LinearGradientBrush>
-                    </Grid.Background>
-                    <Image Source="ecci.png"
-                           Aspect="AspectFit"
-                           HeightRequest="150"/>
+                <Border StrokeThickness="0"
+                        StrokeShape="RoundRectangle 24"
+                        BackgroundColor="#1E1B4B"
+                        Padding="24">
+                    <Grid RowDefinitions="Auto,Auto,Auto" ColumnDefinitions="*,140" ColumnSpacing="12">
+                        <VerticalStackLayout Grid.Row="0" Grid.Column="0" Spacing="10">
+                            <Label Text="🎉 VivaEventos"
+                                   FontSize="16"
+                                   TextColor="#F97316"/>
+                            <Label Text="Gestiona eventos, aforos y organizadores desde un solo lugar"
+                                   FontSize="28"
+                                   FontAttributes="Bold"
+                                   TextColor="White"/>
+                            <Label Text="Publica experiencias, coordina aliados y mantén cada evento listo para salir al aire."
+                                   FontSize="14"
+                                   TextColor="#CBD5E1"/>
+                        </VerticalStackLayout>
+
+                        <Image Grid.Row="0"
+                               Grid.Column="1"
+                               Grid.RowSpan="3"
+                               Source="event_dashboard.svg"
+                               HeightRequest="150"
+                               Aspect="AspectFit"
+                               HorizontalOptions="End"/>
+
+                        <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Margin="0,16,0,0" Spacing="10">
+                            <Button Text="🎟️ Ver eventos"
+                                    Command="{Binding GoProductsCommand}"
+                                    BackgroundColor="#7C3AED"
+                                    TextColor="White"/>
+                            <Button Text="🤝 Organizadores"
+                                    Command="{Binding GoProveedoresCommand}"
+                                    BackgroundColor="#F97316"
+                                    TextColor="White"/>
+                        </HorizontalStackLayout>
+                    </Grid>
+                </Border>
+
+                <Grid ColumnDefinitions="*,*" ColumnSpacing="12">
+                    <Border Grid.Column="0"
+                            BackgroundColor="White"
+                            Stroke="#E2E8F0"
+                            StrokeShape="RoundRectangle 18"
+                            Padding="16">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="📅 Agenda activa" FontSize="14" TextColor="#64748B"/>
+                            <Label Text="Eventos con cupos, precios y estado publicados" FontSize="18" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
+
+                    <Border Grid.Column="1"
+                            BackgroundColor="White"
+                            Stroke="#E2E8F0"
+                            StrokeShape="RoundRectangle 18"
+                            Padding="16">
+                        <VerticalStackLayout Spacing="6">
+                            <Label Text="✨ Experiencias" FontSize="14" TextColor="#64748B"/>
+                            <Label Text="Branding visual renovado con iconos y piezas temáticas" FontSize="18" FontAttributes="Bold"/>
+                        </VerticalStackLayout>
+                    </Border>
                 </Grid>
-
-                <Label Text="Gestor de Inventario"
-                       FontSize="28"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center"/>
-
-                <Label Text="Selecciona una opción para continuar"
-                       FontSize="14"
-                       HorizontalOptions="Center"
-                       TextColor="Gray"/>
-
-                <Button Text="📦  Gestionar Productos"
-                        Command="{Binding GoProductsCommand}"
-                        HeightRequest="55"
-                        FontSize="16"/>
-
-                <Button Text="🏭  Ver Proveedores"
-                        Command="{Binding GoProveedoresCommand}"
-                        HeightRequest="55"
-                        FontSize="16"/>
-
             </VerticalStackLayout>
         </ScrollView>
 
-        <!-- Footer -->
         <Grid Grid.Row="1"
-              BackgroundColor="#191919"
+              BackgroundColor="#0F172A"
               Padding="10"
               ColumnDefinitions="*,*,*,*">
 
             <Button Grid.Column="0"
-                    Text="Inicio"
+                    Text="🏠 Inicio"
                     BackgroundColor="Transparent"
-                    TextColor="#00FFFF"
+                    TextColor="#F8FAFC"
                     Command="{Binding GoInicioCommand}"/>
 
             <Button Grid.Column="1"
-                    Text="Productos"
+                    Text="🎟️ Eventos"
                     BackgroundColor="Transparent"
-                    TextColor="#FF10F0"
+                    TextColor="#A78BFA"
                     Command="{Binding GoProductsCommand}" />
 
             <Button Grid.Column="2"
                     Text="Providers"
                     BackgroundColor="Transparent"
-                    TextColor="#FFA500"
+                    TextColor="#FDBA74"
                     Command="{Binding GoProveedoresCommand}"/>
 
             <Button Grid.Column="3"
-                    Text="Perfil"
+                    Text="✨ Marca"
                     BackgroundColor="Transparent"
-                    TextColor="#39FF14"/>
+                    TextColor="#22D3EE"/>
 
         </Grid>
 

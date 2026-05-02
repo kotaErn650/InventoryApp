@@ -7,7 +7,7 @@ public class BoolToEstadoConverter : IValueConverter
     public object? Convert(object? value, Type targetType, object? parameter, CultureInfo culture)
     {
         if (value is bool activo)
-            return activo ? "✅ Activo" : "🚫 Inactivo";
+            return activo ? "🟢 Disponible" : "⚪ Pausado";
         return string.Empty;
     }
 
