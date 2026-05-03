@@ -18,5 +18,11 @@ namespace InventoryApp
 
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
+
+        private async void OnHelpSoporClicked(object? sender, EventArgs e)
+        {
+            if (Shell.Current is not null)
+                await Shell.Current.GoToAsync("configuracion");
+        }
     }
 }

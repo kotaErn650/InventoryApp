@@ -46,10 +46,12 @@
                     BackgroundColor="Transparent"
                     TextColor="#A78BFA"/>
 
-            <Button Grid.Column="2"
-                    Text="✨ Marca"
-                    BackgroundColor="Transparent"
-                    TextColor="#22D3EE"/>
+            <Button
+            Grid.Column="2"
+            Text="HelpSopor"
+            BackgroundColor="Transparent"
+            TextColor="#39FF14"
+            Clicked="OnHelpSoporClicked"/>
 
         </Grid>
     </Grid>
