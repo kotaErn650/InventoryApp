@@ -1,0 +1,15 @@
+<svg width="720" height="520" viewBox="0 0 720 520" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="520" rx="48" fill="#1E1B4B"/>
+  <circle cx="565" cy="120" r="60" fill="#7C3AED" opacity="0.9"/>
+  <circle cx="620" cy="195" r="34" fill="#F97316" opacity="0.85"/>
+  <circle cx="500" cy="205" r="26" fill="#22D3EE" opacity="0.85"/>
+  <rect x="102" y="118" width="270" height="204" rx="32" fill="#312E81"/>
+  <rect x="140" y="160" width="194" height="20" rx="10" fill="#C4B5FD"/>
+  <rect x="140" y="196" width="140" height="20" rx="10" fill="#FDBA74"/>
+  <rect x="140" y="232" width="168" height="20" rx="10" fill="#67E8F9"/>
+  <rect x="410" y="278" width="168" height="34" rx="17" fill="#F97316"/>
+  <rect x="102" y="352" width="520" height="26" rx="13" fill="#4338CA" opacity="0.65"/>
+  <path d="M464 128L490 186H438L464 128Z" fill="white"/>
+  <rect x="452" y="188" width="24" height="92" rx="12" fill="white"/>
+  <path d="M516 154C540 170 554 198 554 228C554 286 507 333 449 333C391 333 344 286 344 228C344 198 358 171 382 154" stroke="white" stroke-width="20" stroke-linecap="round"/>
+</svg>

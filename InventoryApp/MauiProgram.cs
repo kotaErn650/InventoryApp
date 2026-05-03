@@ -58,41 +58,41 @@ public static class MauiProgram
                 new Product
                 {
                     Id = Guid.NewGuid(),
-                    Nombre = "Laptop",
-                    Descripcion = "Laptop Dell XPS 15",
-                    Precio = 3500m,
-                    Stock = 10,
+                    Nombre = "Festival de Música Aurora",
+                    Descripcion = "Concierto nocturno con tres escenarios, zona gastronómica y experiencias inmersivas.",
+                    Precio = 180000m,
+                    Stock = 1200,
                     Activo = true,
                     FechaCreacion = DateTime.UtcNow
                 },
                 new Product
                 {
                     Id = Guid.NewGuid(),
-                    Nombre = "Mouse",
-                    Descripcion = "Mouse inalámbrico Logitech",
-                    Precio = 80000m,
-                    Stock = 50,
+                    Nombre = "Tech Summit 2026",
+                    Descripcion = "Jornada de innovación con charlas sobre IA, producto digital y networking ejecutivo.",
+                    Precio = 95000m,
+                    Stock = 450,
                     Activo = true,
                     FechaCreacion = DateTime.UtcNow
                 },
                 new Product
                 {
                     Id = Guid.NewGuid(),
-                    Nombre = "Teclado",
-                    Descripcion = "Teclado mecánico RGB",
-                    Precio = 150000,
-                    Stock = 30,
+                    Nombre = "Mercado Creativo de Fin de Semana",
+                    Descripcion = "Encuentro de marcas emergentes con talleres, food trucks y música en vivo.",
+                    Precio = 25000m,
+                    Stock = 800,
                     Activo = true,
                     FechaCreacion = DateTime.UtcNow
                 },
                 new Product
                 {
                     Id = Guid.NewGuid(),
-                    Nombre = "Monitor",
-                    Descripcion = "Monitor 27\" 4K UHD",
-                    Precio = 800M,
-                    Stock = 5,
-                    Activo = true,
+                    Nombre = "Bootcamp Startups Live",
+                    Descripcion = "Sesiones prácticas para emprendedores con pitch deck clinic y mentorías express.",
+                    Precio = 65000m,
+                    Stock = 180,
+                    Activo = false,
                     FechaCreacion = DateTime.UtcNow
                 }
             );
@@ -105,40 +105,42 @@ public static class MauiProgram
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "hard.png",
-                    Nombre = "TechDistribuciones S.A.",
-                    TipoProducto = "Electrónica",
-                    Activo = true
+                    Foto = "organizer_music.svg",
+                    Nombre = "Luna Stage Productions",
+                    TipoProducto = "Conciertos y festivales",
+                    Activo = true,
+                    Telefono = "3001234567",
+                    Email = "booking@lunastage.co"
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "offi.png",
-                    Nombre = "OfficeSupplies Ltda.",
-                    TipoProducto = "Papelería y Oficina",
+                    Foto = "organizer_business.svg",
+                    Nombre = "Nodo Conference Lab",
+                    TipoProducto = "Congresos corporativos",
                     Activo = true,
-                    Telefono = "3212222",
-                    Email= "aajdha@Ecci.edu.co"
+                    Telefono = "3007654321",
+                    Email = "hello@nodolab.co"
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "hard.png",
-                    Nombre = "Hardware Pro",
-                    TipoProducto = "Componentes de Computadora",
+                    Foto = "organizer_community.svg",
+                    Nombre = "Ciudad Viva Events",
+                    TipoProducto = "Experiencias de comunidad",
                     Activo = true,
-                    Telefono = "3212222",
-                    Email = "aajdha@Ecci.edu.co"
+                    Telefono = "3015558899",
+                    Email = "team@ciudadviva.co"
                 },
                 new Proveedor
                 {
                     Id = Guid.NewGuid(),
-                    Foto = "per.png",
-                    Nombre = "MegaImport Corp.",
-                    TipoProducto = "Perifericos",
+                    Foto = "organizer_default.svg",
+                    Nombre = "Atelier Social Club",
+                    TipoProducto = "Eventos boutique",
                     Activo = true,
-                    Telefono = "3212222",
-                    Email = "aajdha@Ecci.edu.co"
+                    Telefono = "3204567812",
+                    Email = "contacto@ateliersocial.co"
                 }
             );
             db.SaveChanges();

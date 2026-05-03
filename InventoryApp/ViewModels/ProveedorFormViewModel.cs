@@ -44,7 +44,7 @@ public class ProveedorFormViewModel : BaseViewModel, IQueryAttributable
         set => SetProperty(ref _activo, value);
     }
 
-    private string _title = "Nuevo Proveedor";
+    private string _title = "Nuevo Organizador";
     public string Title
     {
         get => _title;
@@ -91,20 +91,20 @@ public class ProveedorFormViewModel : BaseViewModel, IQueryAttributable
         Telefono = proveedor.Telefono;
         Email = proveedor.Email;
         Activo = proveedor.Activo;
-        Title = "Editar Proveedor";
+        Title = "Editar Organizador";
     }
 
     private async Task Save()
     {
         if (string.IsNullOrWhiteSpace(Nombre))
         {
-            await Shell.Current.DisplayAlertAsync("Error", "El nombre del proveedor es obligatorio.", "OK");
+            await Shell.Current.DisplayAlertAsync("Error", "El nombre del organizador es obligatorio.", "OK");
             return;
         }
 
         if (string.IsNullOrWhiteSpace(TipoProducto))
         {
-            await Shell.Current.DisplayAlertAsync("Error", "El tipo de producto es obligatorio.", "OK");
+            await Shell.Current.DisplayAlertAsync("Error", "La especialidad del organizador es obligatoria.", "OK");
             return;
         }
 
@@ -122,6 +122,9 @@ public class ProveedorFormViewModel : BaseViewModel, IQueryAttributable
             _editingProveedor.Telefono = Telefono;
             _editingProveedor.Email = Email;
             _editingProveedor.Activo = Activo;
+            _editingProveedor.Foto = string.IsNullOrWhiteSpace(_editingProveedor.Foto)
+                ? "organizer_default.svg"
+                : _editingProveedor.Foto;
             await _service.Update(_editingProveedor);
         }
         else
@@ -133,6 +136,7 @@ public class ProveedorFormViewModel : BaseViewModel, IQueryAttributable
                 TipoProducto = TipoProducto,
                 Telefono = Telefono,
                 Email = Email,
+                Foto = "organizer_default.svg",
                 Activo = Activo
             };
             await _service.Create(proveedor);

@@ -1,4 +1,4 @@
-﻿namespace InventoryApp
+namespace InventoryApp
 {
     public partial class MainPage : ContentPage
     {
@@ -12,11 +12,9 @@
         private void OnCounterClicked(object? sender, EventArgs e)
         {
             count++;
-
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            CounterBtn.Text = count == 1
+                ? "✨ Branding listo para eventos"
+                : $"✨ Revisión visual #{count}";
 
             SemanticScreenReader.Announce(CounterBtn.Text);
         }

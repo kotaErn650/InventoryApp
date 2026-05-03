@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:InventoryApp.Models"
              x:Class="InventoryApp.Views.ProveedoresPage"
-             Title="Proveedores">
+             Title="Organizadores"
+             BackgroundColor="{StaticResource Gray100}">
 
     <Shell.SearchHandler>
         <SearchHandler Placeholder="Buscar proveedores"
@@ -37,17 +38,23 @@
     <Grid RowDefinitions="Auto,*,Auto">
 
         <Button Grid.Row="0"
-                Text="+ Nuevo Proveedor"
+                Text="➕ Nuevo organizador"
                 Command="{Binding NewCommand}"
-                Margin="15,10"/>
+                BackgroundColor="#F97316"
+                TextColor="White"
+                Margin="15,14,15,10"/>
 
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Proveedores}"
-                        Margin="10,0">
+                        Margin="12,0">
 
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Border Margin="0,5" Padding="12" StrokeShape="RoundRectangle 8">
+                    <Border Margin="0,6"
+                            Padding="14"
+                            BackgroundColor="White"
+                            Stroke="#E2E8F0"
+                            StrokeShape="RoundRectangle 18">
 
                         <Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="80,*">
 
@@ -68,9 +75,9 @@
                                        FontSize="17"
                                        FontAttributes="Bold"/>
 
-                                <Label Text="{Binding TipoProducto, StringFormat='Tipo: {0}'}"
+                                <Label Text="{Binding TipoProducto, StringFormat='Especialidad: {0}'}"
                                        FontSize="13"
-                                       TextColor="Gray"/>
+                                       TextColor="#64748B"/>
 
                                 <Label Text="{Binding Activo, Converter={StaticResource BoolToEstadoConverter}}"
                                        FontAttributes="Bold"
@@ -85,20 +92,23 @@
                                 <Label Grid.Column="0"
                                        Text="{Binding Telefono, StringFormat='📞 {0}'}"
                                        FontSize="12"
-                                       TextColor="Gray"
+                                       TextColor="#64748B"
                                        VerticalOptions="Center"/>
 
                                 <Button Grid.Column="1"
-                                        Text="Editar"
+                                        Text="✏️ Editar"
                                         FontSize="12"
                                         HeightRequest="36"
                                         Padding="10,0"
+                                        BackgroundColor="#FFF7ED"
+                                        TextColor="#C2410C"
                                         Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EditCommand}"
                                         CommandParameter="{Binding .}"/>
 
                                 <Button Grid.Column="2"
                                         Text="{Binding Activo, Converter={StaticResource BoolToToggleTextConverter}}"
                                         BackgroundColor="{Binding Activo, Converter={StaticResource BoolToToggleColorConverter}}"
+                                        TextColor="White"
                                         FontSize="12"
                                         HeightRequest="36"
                                         Padding="10,0"
@@ -115,28 +125,27 @@
 
         </CollectionView>
 
-        <!-- Footer -->
         <Grid Grid.Row="2"
-              BackgroundColor="#191919"
+              BackgroundColor="#0F172A"
               Padding="10"
               ColumnDefinitions="*,*,*,*">
 
             <Button Grid.Column="0"
-                    Text="Inicio"
+                    Text="🏠 Inicio"
                     BackgroundColor="Transparent"
-                    TextColor="#00FFFF"
+                    TextColor="#F8FAFC"
                     Command="{Binding GoInicioCommand}"/>
 
             <Button Grid.Column="1"
-                    Text="Productos"
+                    Text="🎟️ Eventos"
                     BackgroundColor="Transparent"
-                    TextColor="#FF10F0"
+                    TextColor="#A78BFA"
                     Command="{Binding GoProductsCommand}"/>
 
             <Button Grid.Column="2"
-                    Text="Proveedores"
+                    Text="🤝 Organizadores"
                     BackgroundColor="Transparent"
-                    TextColor="#FFA500"
+                    TextColor="#FDBA74"
                     Command="{Binding GoProveedoresCommand}"/>
 
             <Button Grid.Column="3"
