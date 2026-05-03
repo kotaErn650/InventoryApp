@@ -5,6 +5,7 @@ using InventoryApp.Services;
 using InventoryApp.ViewModels;
 using InventoryApp.Views;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 public static class MauiProgram
 {
@@ -14,8 +15,11 @@ public static class MauiProgram
 
         builder.UseMauiApp<InventoryApp.App>();
 
+        // Configurar la ruta de la base de datos SQLite
+        var dbPath = Path.Combine(FileSystem.AppDataDirectory, "InventoryApp.db");
+
         builder.Services.AddDbContext<AppDbContext>(
-            opt => opt.UseInMemoryDatabase("InventoryDb"),
+            opt => opt.UseSqlite($"Data Source={dbPath}"),
             ServiceLifetime.Singleton);
 
         builder.Services.AddSingleton<DbContextFactory>();
@@ -42,106 +46,10 @@ public static class MauiProgram
 
         var app = builder.Build();
 
-        SeedDatabase(app.Services);
+        // Inicializar la base de datos de forma asincrónica
+        var dbContext = app.Services.GetRequiredService<AppDbContext>();
+        _ = DatabaseInitializer.InitializeAsync(dbContext);
 
         return app;
-    }
-
-    private static void SeedDatabase(IServiceProvider services)
-    {
-        var db = services.GetRequiredService<AppDbContext>();
-        db.Database.EnsureCreated();
-
-        if (!db.Products.Any())
-        {
-            db.Products.AddRange(
-                new Product
-                {
-                    Id = Guid.NewGuid(),
-                    Nombre = "Laptop",
-                    Descripcion = "Laptop Dell XPS 15",
-                    Precio = 3500m,
-                    Stock = 10,
-                    Activo = true,
-                    FechaCreacion = DateTime.UtcNow
-                },
-                new Product
-                {
-                    Id = Guid.NewGuid(),
-                    Nombre = "Mouse",
-                    Descripcion = "Mouse inalámbrico Logitech",
-                    Precio = 80000m,
-                    Stock = 50,
-                    Activo = true,
-                    FechaCreacion = DateTime.UtcNow
-                },
-                new Product
-                {
-                    Id = Guid.NewGuid(),
-                    Nombre = "Teclado",
-                    Descripcion = "Teclado mecánico RGB",
-                    Precio = 150000,
-                    Stock = 30,
-                    Activo = true,
-                    FechaCreacion = DateTime.UtcNow
-                },
-                new Product
-                {
-                    Id = Guid.NewGuid(),
-                    Nombre = "Monitor",
-                    Descripcion = "Monitor 27\" 4K UHD",
-                    Precio = 800M,
-                    Stock = 5,
-                    Activo = true,
-                    FechaCreacion = DateTime.UtcNow
-                }
-            );
-            db.SaveChanges();
-        }
-
-        if (!db.Proveedores.Any())
-        {
-            db.Proveedores.AddRange(
-                new Proveedor
-                {
-                    Id = Guid.NewGuid(),
-                    Foto = "hard.png",
-                    Nombre = "TechDistribuciones S.A.",
-                    TipoProducto = "Electrónica",
-                    Activo = true
-                },
-                new Proveedor
-                {
-                    Id = Guid.NewGuid(),
-                    Foto = "offi.png",
-                    Nombre = "OfficeSupplies Ltda.",
-                    TipoProducto = "Papelería y Oficina",
-                    Activo = true,
-                    Telefono = "3212222",
-                    Email= "aajdha@Ecci.edu.co"
-                },
-                new Proveedor
-                {
-                    Id = Guid.NewGuid(),
-                    Foto = "hard.png",
-                    Nombre = "Hardware Pro",
-                    TipoProducto = "Componentes de Computadora",
-                    Activo = true,
-                    Telefono = "3212222",
-                    Email = "aajdha@Ecci.edu.co"
-                },
-                new Proveedor
-                {
-                    Id = Guid.NewGuid(),
-                    Foto = "per.png",
-                    Nombre = "MegaImport Corp.",
-                    TipoProducto = "Perifericos",
-                    Activo = true,
-                    Telefono = "3212222",
-                    Email = "aajdha@Ecci.edu.co"
-                }
-            );
-            db.SaveChanges();
-        }
     }
 }
